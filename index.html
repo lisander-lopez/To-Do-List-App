@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="css/style.css">
+  
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="app" class="container">
+    
+    <h1 class="text-center">To Do List</h1>
+    <br/>
+    <br/>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="input-group item-form-input text-center">
+          <input type="text" class="form-control" placeholder="Enter item" v-model="itemToAdd">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" v-on:click="addItemToList">Add to List</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <br/>
+    
+    <ul class="list-group">
+        <li class="list-group-item row" v-for="(todo, index) in todos">
+          <div class="col-sm-6">
+            <div v-if="editing">
+               <!--{{ todo.preSavedText = todo.text }}-->
+              <input type="text" class="form-control" v-model="todo.text">
+            </div>
+            <div v-else>
+              {{ index + 1 + ' - ' + todo.text }}
+            </div>
+            
+          </div>
+          <div class="col-sm-6 text-right">
+            <div v-if="editing">
+              <button type="button" class="btn btn-secondary" v-on:click="editing = false">Go Back</button>
+            </div>
+            <div v-else>
+              <button type="button" class="btn btn-warning" v-on:click="editing = true;">Edit</button>
+              <button type="button" class="btn btn-danger" v-on:click="deleteItem(index)">Delete</button>
+            </div>
+            
+          </div>
+        </li>
+    </ul>
+    </div>
+    
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ],
+    editing: false
+  },
+  methods: {
+    addItemToList: function(){
+      app.todos.push({ text: app.itemToAdd });
+    },
+    deleteItem: function(index){
+      app.todos.splice( index, 1 );
+    }
+    
+  }
+})    
+</script>
+</html>
