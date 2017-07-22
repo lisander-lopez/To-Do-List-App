@@ -11,6 +11,8 @@
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="js/js.cookie.js"></script>
+  
 </head>
 <body>
     <div id="app" class="container">
@@ -30,7 +32,19 @@
       </div>
     </div>
     
-    <br/>
+    <br />
+    
+     <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="input-group item-form-input text-center">
+          <span class="input-group-btn save-list">
+            <button class="btn btn-secondary" type="button" v-on:click="saveListAndRefresh">Save List</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <br />
     
     <ul class="list-group">
         <li class="list-group-item row" v-for="(todo, index) in todos">
@@ -60,26 +74,9 @@
     
 </body>
 <script src="https://unpkg.com/vue"></script>
+<script src="js/script.js"></script>
 <script>
-var app = new Vue({
-  el: '#app',
-  data: {
-    todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
-    ],
-    editing: false
-  },
-  methods: {
-    addItemToList: function(){
-      app.todos.push({ text: app.itemToAdd });
-    },
-    deleteItem: function(index){
-      app.todos.splice( index, 1 );
-    }
+  
     
-  }
-})    
 </script>
 </html>
